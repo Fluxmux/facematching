@@ -1,5 +1,5 @@
-
-*.txt
 *.pt
 *.pyc
 data/*
+*.weights
+*.names

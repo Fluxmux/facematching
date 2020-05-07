@@ -1,0 +1,12 @@
+-------------------------
+accuracy_score: 0.9106
+precision:      0.9115
+recall:         0.9106
+fscore:         0.9106
+-------------------------
+total true positives 300308
+total true negatives 297501
+-------------------------
+total false positives: 36618
+total false negatives: 22073
+-------------------------

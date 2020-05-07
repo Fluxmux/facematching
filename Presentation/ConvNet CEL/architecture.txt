@@ -1,0 +1,27 @@
+SiameseNetworkAbs(
+  (cnn1): Sequential(
+    (0): ReflectionPad2d((1, 1, 1, 1))
+    (1): Conv2d(1, 4, kernel_size=(3, 3), stride=(1, 1))
+    (2): ReLU(inplace)
+    (3): BatchNorm2d(4, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (4): MaxPool2d(kernel_size=3, stride=1, padding=1, dilation=1, ceil_mode=False)
+    (5): ReflectionPad2d((1, 1, 1, 1))
+    (6): Conv2d(4, 8, kernel_size=(3, 3), stride=(1, 1))
+    (7): ReLU(inplace)
+    (8): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (9): ReflectionPad2d((1, 1, 1, 1))
+    (10): Conv2d(8, 8, kernel_size=(3, 3), stride=(1, 1))
+    (11): ReLU(inplace)
+    (12): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (13): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  )
+  (fc1): Sequential(
+    (0): Linear(in_features=20000, out_features=500, bias=True)
+    (1): ReLU(inplace)
+    (2): Linear(in_features=500, out_features=100, bias=True)
+    (3): ReLU(inplace)
+    (4): Linear(in_features=100, out_features=10, bias=True)
+  )
+  (fc2): Linear(in_features=10, out_features=1, bias=True)
+)
+Number of learnable parameters: 10052581

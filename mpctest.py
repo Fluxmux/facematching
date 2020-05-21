@@ -4,6 +4,7 @@ import torchvision.transforms as transforms
 from PIL import Image
 from matplotlib import pyplot as plt
 import numpy as np
+import pickle
 
 device = None
 
@@ -17,18 +18,23 @@ def print_network(net):
     print("Number of learnable parameters:", count_parameters(net))
     print("PARAMETERS OF NETWORK")
     i = 0
-    for param in net.parameters():
-        if i == 0:
-            for x in range(0, 3):
-                for y in range(0, 3):
-                    print(param[0, 0, x, y].item())
+    weights = []
+    biases = []
+    for name, param in net.named_parameters():
+        if i == 1 or i == 3 or i == 5:
+            b = param.detach().numpy().tolist()
+            biases.append(b)
+        if i == 0 or i == 2 or i == 4:
+            w = param.detach().numpy().tolist()
+            weights.append(w)
         i += 1
+    return weights, biases
 
 
 def load_network():
     global device
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    net = torch.load("models/model_e100.pt").to(device)
+    net = torch.load("models/model_100x100.pt").to(device)
     return net
 
 
@@ -95,21 +101,10 @@ def save_activations():
         )
 
 
-net = load_network()
-# img0, img1 = load_images()
-print_network(net)
-# out0, out1 = net(img0, img1)
-# dist = F.pairwise_distance(out0, out1).item()
-#
-"""
-img, _ = load_images()
-activations = net.cnn1[0].forward(img)  # conv2d
-out = activations.detach().numpy()
-out = out[0, 0].flatten()
-print(np.where(out == -0.218048095703125))
-print(out)
-"""
-"""
-activations = net.cnn1[1].forward(activations)  # maxpooling
-activations = net.cnn1[2].forward(activations)  # relu
-"""
+weights, biases = print_network(load_network())
+
+with open('weights.pkl', 'wb') as f:
+    pickle.dump(weights, f)
+
+with open('biases.pkl', 'wb') as f:
+    pickle.dump(biases, f)

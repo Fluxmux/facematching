@@ -1,9 +1,7 @@
-# Secure Face Matching
+# Face Matching
 #### To read my thesis download this [pdf](https://github.com/Fluxmux/master-thesis/blob/master/thesis.pdf)
-We are affected with machine learning in many aspects of our daily lives, applications ranges from facial recognition to enhanced healthcare to self-driving cars. As companies outsource image classification tasks to cloud computing service providers, we see a rise in privacy concerns for both the users wishing to keep their data confidential, as for the company wishing to keep their classifier obfuscated.
 
-In this thesis we study the applicability of [secure multiparty computation](https://en.wikipedia.org/wiki/Secure_multi-party_computation "MPC") protocols on deep learning-based face matching and try to implement a privacy-preserving face matching algorithm.
+This repository contains the code for training the convolutional neural network and testing it. In this repository all computations are done on cleartext data. To see the code for the secure face matching algorithm click [here](https://github.com/Fluxmux/securefacematching).
 
-![Workflow](https://github.com/Fluxmux/master-thesis/blob/master/fig/workflow.png)
-
-The workflow commences by acquiring an image of the clients face, this can be done by taking a photograph with the front-facing camera of the clients smartphone. The client then performs secret sharing on the image and sends the shared secret to the participating parties. The parties receive their shares and jointly compute the output of the face recognition model on the given shared image of the face.
+## Notes
+Since GitHub doesn't allow uploads of big datasets, the AT&T database of faces must be downloaded manualy. You can find this dataset [here](https://www.kaggle.com/kasikrit/att-database-of-faces).
